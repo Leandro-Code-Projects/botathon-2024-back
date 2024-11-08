@@ -1,0 +1,11 @@
+site_name: "botathon-2024-back"
+site_description: "botathon-2024-back"
+
+nav:
+  - Introduction: index.md
+  - API Reference:
+    - Overview: api.md
+    - Endpoints: endpoints.md
+
+plugins:
+  - techdocs-core
