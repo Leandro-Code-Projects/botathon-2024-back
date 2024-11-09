@@ -17,3 +17,29 @@ export interface Appointment {
     status: 'pending' | 'confirmed' | 'cancelled';
     email: string;
 }
+
+export interface Message {
+    id: string;
+    content: string;
+    sender: 'user' | 'bot';
+    timestamp: Date;
+    type?: 'options' | 'text';
+    options?: string[];
+}
+
+export interface UserInfo {
+    name: string;
+    rut: string;
+    institute: string;
+    specialty: string;
+    email: string;
+}
+
+export interface LastMessage {
+    id: string;
+    message: string;
+    replied: boolean;
+    seen: boolean;
+    timestamp: Date;
+    contextMessages: string[];
+}
