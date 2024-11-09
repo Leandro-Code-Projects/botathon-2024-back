@@ -30,7 +30,7 @@ router.post('/send', (req, res) => {
 // Endpoint para que AA consulte el último mensaje
 router.get('/pending', (req, res) => {
     const lastMessage = chatService.getLastMessage();
-    console.log("router.get('/pending') lastMessage: " + lastMessage)
+    console.log("router.get('/pending') lastMessage: " + JSON.stringify(lastMessage))
     res.json({
         message: lastMessage.message,
         replied: lastMessage.replied
