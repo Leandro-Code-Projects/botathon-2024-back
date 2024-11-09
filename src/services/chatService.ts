@@ -1,34 +1,29 @@
 import { LastMessage } from '../interfaces';
 
 class ChatService {
-    private lastMessage: LastMessage | null = null;
+    private lastMessage: LastMessage = {
+        message: '',
+        replied: true, // Inicialmente true para que el bot no procese nada
+        botResponse: null
+    };
 
-    setLastMessage(message: string, contextMessages: string[]): LastMessage {
+    setUserMessage(message: string): void {
         this.lastMessage = {
-            id: Date.now().toString(),
             message,
             replied: false,
-            seen: false,
-            timestamp: new Date(),
-            contextMessages
+            botResponse: null
         };
-        return this.lastMessage;
     }
 
-    getLastMessage(): LastMessage | null {
-        return this.lastMessage;
-    }
-
-    setReply(): void {
+    setBotResponse(response: string): void {
         if (this.lastMessage) {
+            this.lastMessage.botResponse = response;
             this.lastMessage.replied = true;
         }
     }
 
-    setSeen(): void {
-        if (this.lastMessage) {
-            this.lastMessage.seen = true;
-        }
+    getLastMessage(): LastMessage {
+        return this.lastMessage;
     }
 }
 

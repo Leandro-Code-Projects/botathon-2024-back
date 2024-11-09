@@ -27,19 +27,8 @@ export interface Message {
     options?: string[];
 }
 
-export interface UserInfo {
-    name: string;
-    rut: string;
-    institute: string;
-    specialty: string;
-    email: string;
-}
-
 export interface LastMessage {
-    id: string;
     message: string;
     replied: boolean;
-    seen: boolean;
-    timestamp: Date;
-    contextMessages: string[];
+    botResponse: string | null;
 }
