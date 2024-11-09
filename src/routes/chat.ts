@@ -38,9 +38,18 @@ router.get('/pending', (req, res) => {
 });
 
 // Endpoint para que AA envíe la respuesta
-router.post('/reply', (req, res) => {
+router.post('/reply', express.text({ type: '*/*' }), (req, res) => {
     try {
-        const { message } = req.body;
+        let message = req.body;
+
+        // Limpieza básica del mensaje
+        message = message
+            .replace(/^{\s*"message"\s*:\s*"/, '') // Remover inicio si viene como JSON malformado
+            .replace(/"\s*}$/, '')                 // Remover final si viene como JSON malformado
+            .replace(/\\"/g, '"')                  // Reemplazar \" por "
+            .replace(/\\/g, '')                    // Remover backslashes extras
+            .trim();                               // Remover espacios extras
+
         console.log("router.post('/reply') message: " + message)
         chatService.setBotResponse(message);
         res.json({ success: true });
