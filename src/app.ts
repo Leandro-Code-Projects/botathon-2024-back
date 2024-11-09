@@ -12,4 +12,13 @@ app.get("/ping", (req, res) => {
   res.status(200).send("pong")
 });
 
+app.get("/trigger", (req, res) => {
+  res.status(200).json({
+    dia: "7",
+    hora: "8",
+    localidad: "9",
+    medico: "10"
+  })
+})
+
 export default app;
