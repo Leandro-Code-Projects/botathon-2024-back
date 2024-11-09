@@ -15,4 +15,5 @@ export interface Appointment {
     specialty: string;
     institute: string;
     status: 'pending' | 'confirmed' | 'cancelled';
+    email: string;
 }

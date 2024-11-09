@@ -1,4 +1,6 @@
 import {Appointment} from "../interfaces";
+import { v4 as uuidV4 } from "uuid"
+import axios from "axios"
 
 export class AppointmentService {
     private availableSlots: Record<string, string[]> = {
@@ -15,7 +17,7 @@ export class AppointmentService {
     }
 
     async createAppointment(appointmentData: Omit<Appointment, 'id' | 'status'>): Promise<Appointment> {
-        const id = Date.now().toString();
+        const id = uuidV4()
         const appointment: Appointment = {
             ...appointmentData,
             id,
@@ -23,6 +25,19 @@ export class AppointmentService {
         };
 
         this.appointments.push(appointment);
+        this.triggerBotAgendamiento("agendamiento", appointment.email)
         return appointment;
+    }
+
+    private async triggerBotAgendamiento(subject: string, email: string) {
+        try {
+            await axios.post("https://tempp-mails-api/api/send-email", {
+                subject,
+                email
+            })
+        } catch (err) {
+            console.log("Error triggerBotAgendamiento")
+            console.log(err)
+        }
     }
 }

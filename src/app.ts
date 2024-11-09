@@ -17,7 +17,8 @@ app.get("/trigger", (req, res) => {
     dia: "7",
     hora: "8",
     localidad: "9",
-    medico: "10"
+    medico: "10",
+    email: "leandrocode2785@gmail.com"
   })
 })
 
