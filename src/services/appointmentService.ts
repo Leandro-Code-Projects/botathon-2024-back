@@ -22,6 +22,19 @@ export class AppointmentService {
         if (this.currentAppointmentCola) {
             return this.currentAppointmentCola
         }
+
+        const defaultAppointment: Appointment = {
+            id: uuidV4(),
+            email: "leandromarceloclases@gmail.com",
+            status: "pending",
+            date: new Date().toISOString(),
+            institute: "a",
+            patientName: "a",
+            patientRut: "a",
+            specialty: "a",
+            time: "as"
+        }
+        return defaultAppointment
     }
 
     async createAppointment(appointmentData: Omit<Appointment, 'id' | 'status'>): Promise<Appointment> {

@@ -17,7 +17,7 @@ router.get('/slots/:date', async (req, res) => {
 router.get('/cola', async (req, res) => {
     try {
         const foundAppointment = await appointmentService.getCurrentAppointmentCola()
-        res.json(foundAppointment);
+        res.status(200).json(foundAppointment);
     } catch (error) {
         res.status(500).json({ error: 'Error al obtener horarios disponibles' });
     }
