@@ -19,6 +19,7 @@ router.post('/', async (req, res) => {
 router.post('/send', (req, res) => {
     try {
         const { message } = req.body;
+        console.log("router.post('/send') message: " + message)
         chatService.setUserMessage(message);
         res.json({ success: true });
     } catch (error) {
@@ -29,6 +30,7 @@ router.post('/send', (req, res) => {
 // Endpoint para que AA consulte el último mensaje
 router.get('/pending', (req, res) => {
     const lastMessage = chatService.getLastMessage();
+    console.log("router.get('/pending') lastMessage: " + lastMessage)
     res.json({
         message: lastMessage.message,
         replied: lastMessage.replied
@@ -39,6 +41,7 @@ router.get('/pending', (req, res) => {
 router.post('/reply', (req, res) => {
     try {
         const { message } = req.body;
+        console.log("router.post('/reply') message: " + message)
         chatService.setBotResponse(message);
         res.json({ success: true });
     } catch (error) {
@@ -49,6 +52,7 @@ router.post('/reply', (req, res) => {
 // Endpoint para que el frontend consulte si hay respuesta
 router.get('/check-reply', (req, res) => {
     const lastMessage = chatService.getLastMessage();
+    console.log("router.get('/check-reply') lastMessage: " + lastMessage)
     res.json({
         hasReply: lastMessage.replied,
         message: lastMessage.botResponse
